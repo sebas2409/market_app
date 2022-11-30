@@ -184,7 +184,7 @@ class FormularioTablas:
         self.label2 = ttk.Label(self.labelframe1, text="Descuento")
         self.label2.grid(column=0, row=5, padx=4, pady=4)
         self.descuento_tipo = tk.StringVar()
-        self.entry_descuento= ttk.Entry(self.labelframe1, textvariable=self.descuento_tipo)
+        self.entry_descuento = ttk.Entry(self.labelframe1, textvariable=self.descuento_tipo)
         self.entry_descuento.grid(column=1, row=5, padx=4, pady=4)
 
         self.botonRegistro = ttk.Button(self.labelframe1, text="Añadir Registro a Detalle", command=self.add_detalle())
