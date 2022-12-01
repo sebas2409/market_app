@@ -11,7 +11,7 @@ class Cliente:
 
     def form_cliente(self):
         self.pagina1 = ttk.Frame(self.cuaderno1)
-        self.cuaderno1.add(self.pagina1, text="Añadir a cliente")
+        self.cuaderno1.add(self.pagina1, text="TABLA CLIENTE")
         self.labelframe1 = ttk.LabelFrame(self.pagina1, text="Cliente")
         self.labelframe1.grid(column=0, row=0, padx=5, pady=10)
 
@@ -82,16 +82,25 @@ class Cliente:
         self.entry_fax.grid(column=1, row=11, padx=4, pady=4)
 
         self.boton1 = ttk.Button(self.labelframe1, text="Añadir Registro a Cliente", command=self.agregar_cli)
-        self.boton1.grid(column=1, row=12, padx=4, pady=4)
-        self.boton2 = ttk.Button(self.labelframe1, text="Borrar Cliente por ID")
+        self.boton1.grid(column=0, row=12, padx=4, pady=4)
 
         self.boton3 = ttk.Button(self.labelframe1, text="Actualizar a Cliente", command=self.update_cli)
-        self.boton3.grid(column=1, row=13, padx=4, pady=4)
+        self.boton3.grid(column=0, row=13, padx=4, pady=4)
+
+        self.boton2 = ttk.Button(self.labelframe1, text="Borrar Cliente por ID", command=self.delete_cli)
+        self.boton2.grid(column=0, row=14, padx=4, pady=4)
+        self.idEntry = tk.StringVar()
+        self.idEntryInput = ttk.Entry(self.labelframe1, textvariable=self.idEntry)
+        self.idEntryInput.grid(column=1, row=14, padx=4, pady=4)
+
+        self.boton100 = ttk.Button(self.labelframe1, text="Ordenar por id", command=self.order_by_id)
+        self.boton100.grid(column=0, row=15, padx=4, pady=4)
 
     def agregar_cli(self):
         datos = (self.idcliente_tipo.get(), self.cia_tipo.get(), self.contacto_tipo.get(), self.cargo_tipo.get(),
                  self.direccion_tipo.get(), self.ciudad_tipo.get(), self.region_tipo.get(), self.cp_tipo.get(),
                  self.pais_tipo.get(), self.tlf_tipo.get(), self.fax_tipo.get())
+
         mb.showinfo("Información", "Cliente añadido")
         self.Controller.add_cliente(datos)
         self.idcliente_tipo.set("")
@@ -107,9 +116,9 @@ class Cliente:
         self.fax_tipo.set("")
 
     def update_cli(self):
-        datos = (self.idcliente_tipo.get(), self.cia_tipo.get(), self.contacto_tipo.get(), self.cargo_tipo.get(),
+        datos = (self.cia_tipo.get(), self.contacto_tipo.get(), self.cargo_tipo.get(),
                  self.direccion_tipo.get(), self.ciudad_tipo.get(), self.region_tipo.get(), self.cp_tipo.get(),
-                 self.pais_tipo.get(), self.tlf_tipo.get(), self.fax_tipo.get())
+                 self.pais_tipo.get(), self.tlf_tipo.get(), self.fax_tipo.get(), self.idcliente_tipo.get())
 
         mb.showinfo("Información", "Cliente actualizado")
         self.Controller.update_cliente(datos)
@@ -124,3 +133,12 @@ class Cliente:
         self.pais_tipo.set("")
         self.tlf_tipo.set("")
         self.fax_tipo.set("")
+
+    def delete_cli(self):
+        datos = (self.idEntry.get(),)
+        self.Controller.delete_client(datos)
+        mb.showinfo("Información", "Usuario Eliminado")
+        self.idcliente_tipo.set("")
+
+    def order_by_id(self):
+        self.Controller.order_by_id()

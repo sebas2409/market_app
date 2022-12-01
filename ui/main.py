@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import ttk
-
 from controller.db_controller import Db_controller as Controller
 from ui.categoria import Categoria
 from ui.cliente import Cliente
