@@ -1,4 +1,6 @@
 from db.db_logic import Db_Logic as db
+from matplotlib import pyplot as pp
+from numpy import var
 
 
 class Db_controller:
@@ -57,3 +59,16 @@ class Db_controller:
 
     def order_product_by_id(self):
         self.database.order_product_by_id()
+
+    def obtener_grafica_cliente(self):
+        clientes = []
+        pedidos = []
+        rs = self.database.get_client_id()
+        for c in rs:
+            clientes.append(c[0])
+            p = self.database.get_count_of_pedidos_by_client(c)
+            pedidos.append(p)
+        pp.plot(clientes, pedidos, color="red")
+        pp.xlabel("id clientes")
+        pp.ylabel("total de pedidos")
+        pp.savefig("../graph/client-graph.png")

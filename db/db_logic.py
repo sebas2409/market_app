@@ -155,11 +155,6 @@ class Db_Logic:
             print(row)
         con.close()
 
-    def abrir(self):
-        # conexion = sqlite3.connect("../supermercado.db")
-        conexion = sqlite3.connect("C:/Users/grand/PycharmProjects/market_app_sge/supermercado.db")
-        return conexion
-
     def select_pedido_ordenado(self):
         con = self.abrir()
         cursor = con.cursor()
@@ -169,3 +164,23 @@ class Db_Logic:
         for row in x:
             print(row)
         con.close()
+
+    def get_client_id(self):
+        con = self.abrir()
+        cursor = con.cursor()
+        sql = "select idcliente from cliente "
+        rs = cursor.execute(sql)
+        return rs.fetchall()
+
+    def get_count_of_pedidos_by_client(self, value):
+        con = self.abrir()
+        cursor = con.cursor()
+        sql = "select * from pedido where idcliente = ?"
+        rs = cursor.execute(sql, value)
+        x = rs.fetchall()
+        return len(x)
+
+    def abrir(self):
+        # conexion = sqlite3.connect("../supermercado.db")
+        conexion = sqlite3.connect("C:/Users/juang/PycharmProjects/market_app/supermercado.db")
+        return conexion
