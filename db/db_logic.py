@@ -43,13 +43,13 @@ class Db_Logic:
         con.commit()
         con.close()
 
-    def add_detalle(self, datos):
-        con = self.abrir()
-        cursor = con.cursor()
-        sql = "insert into detalle values (?,?,?,?,?)"
-        cursor.execute(sql, datos)
-        con.commit()
-        con.close()
+    # def add_detalle(self, datos):
+    #     con = self.abrir()
+    #     cursor = con.cursor()
+    #     sql = "insert into detalle values (?,?,?,?,?)"
+    #     cursor.execute(sql, datos)
+    #     con.commit()
+    #     con.close()
 
     def update_pedido(self, datos):
         con = self.abrir()

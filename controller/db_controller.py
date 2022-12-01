@@ -16,8 +16,8 @@ class Db_controller:
     def add_pedido(self, data):
         self.database.add_pedido(data)
 
-    def add_detalle(self, data):
-        self.database.add_detalle(data)
+    # def add_detalle(self, data):
+    #     self.database.add_detalle(data)
 
     def add_producto(self, data):
         self.database.add_producto(data)

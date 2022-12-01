@@ -15,7 +15,7 @@ class FormularioTablas:
         self.form_cliente()
         self.tabla_productos()
         self.form_pedido()
-        self.form_detalle()
+        # self.form_detalle()
         self.cuaderno1.grid(column=0, row=0, padx=10, pady=10)
         self.ventana1.mainloop()
 
@@ -159,46 +159,46 @@ class FormularioTablas:
         self.boton2 = ttk.Button(self.labelframe1, text="Borrar Pedido por ID")
 
     # Formulario tabla detalle
-    def form_detalle(self):
-        self.pagina1 = ttk.Frame(self.cuaderno1)
-        self.cuaderno1.add(self.pagina1, text="Añadir detalles")
-        self.labelframe1 = ttk.LabelFrame(self.pagina1, text="Detalle")
-        self.labelframe1.grid(column=0, row=0, padx=5, pady=10)
-
-        self.label1 = ttk.Label(self.labelframe1, text="Id pedido:")
-        self.label1.grid(column=0, row=0, padx=4, pady=4)
-        self.iddetalle = tk.IntVar()
-        self.iddetalle_entry = ttk.Entry(self.labelframe1, textvariable=self.iddetalle)
-        self.iddetalle_entry.grid(column=1, row=0, padx=4, pady=4)
-
-        self.label1 = ttk.Label(self.labelframe1, text="Id Producto:")
-        self.label1.grid(column=0, row=1, padx=4, pady=4)
-        self.idproducto_tipo = tk.IntVar()
-        self.entry_idproducto = ttk.Entry(self.labelframe1, textvariable=self.idproducto_tipo)
-        self.entry_idproducto.grid(column=1, row=1, padx=4, pady=4)
-
-        self.label2 = ttk.Label(self.labelframe1, text="Precio")
-        self.label2.grid(column=0, row=2, padx=4, pady=4)
-        self.precioD_tipo = tk.DoubleVar()
-        self.entry_precioD = ttk.Entry(self.labelframe1, textvariable=self.precioD_tipo)
-        self.entry_precioD.grid(column=1, row=2, padx=4, pady=4)
-
-        self.label2 = ttk.Label(self.labelframe1, text="Unidades")
-        self.label2.grid(column=0, row=3, padx=4, pady=4)
-        self.unidades_tipo = tk.IntVar()
-        self.entry_unidades = ttk.Entry(self.labelframe1, textvariable=self.unidades_tipo)
-        self.entry_unidades.grid(column=1, row=3, padx=4, pady=4)
-
-        self.label2 = ttk.Label(self.labelframe1, text="Descuento")
-        self.label2.grid(column=0, row=4, padx=4, pady=4)
-        self.descuento_tipo = tk.IntVar()
-        self.entry_descuento = ttk.Entry(self.labelframe1, textvariable=self.descuento_tipo)
-        self.entry_descuento.grid(column=1, row=4, padx=4, pady=4)
-
-        self.botonRegistro = ttk.Button(self.labelframe1, text="Añadir Registro a Detalle", command=self.agregar_detalle)
-        self.botonRegistro.grid(column=1, row=5, padx=4, pady=4)
-        self.botonBorrarDetalle = ttk.Button(self.labelframe1, text="Borrar Detalle por ID")
-        self.botonBorrarDetalle.grid(column=1, row=6, padx=4, pady=4)
+    # def form_detalle(self):
+    #     self.pagina1 = ttk.Frame(self.cuaderno1)
+    #     self.cuaderno1.add(self.pagina1, text="Añadir detalles")
+    #     self.labelframe1 = ttk.LabelFrame(self.pagina1, text="Detalle")
+    #     self.labelframe1.grid(column=0, row=0, padx=5, pady=10)
+    #
+    #     self.label1 = ttk.Label(self.labelframe1, text="Id pedido:")
+    #     self.label1.grid(column=0, row=0, padx=4, pady=4)
+    #     self.iddetalle = tk.IntVar()
+    #     self.iddetalle_entry = ttk.Entry(self.labelframe1, textvariable=self.iddetalle)
+    #     self.iddetalle_entry.grid(column=1, row=0, padx=4, pady=4)
+    #
+    #     self.label1 = ttk.Label(self.labelframe1, text="Id Producto:")
+    #     self.label1.grid(column=0, row=1, padx=4, pady=4)
+    #     self.idproducto_tipo = tk.IntVar()
+    #     self.entry_idproducto = ttk.Entry(self.labelframe1, textvariable=self.idproducto_tipo)
+    #     self.entry_idproducto.grid(column=1, row=1, padx=4, pady=4)
+    #
+    #     self.label2 = ttk.Label(self.labelframe1, text="Precio")
+    #     self.label2.grid(column=0, row=2, padx=4, pady=4)
+    #     self.precioD_tipo = tk.DoubleVar()
+    #     self.entry_precioD = ttk.Entry(self.labelframe1, textvariable=self.precioD_tipo)
+    #     self.entry_precioD.grid(column=1, row=2, padx=4, pady=4)
+    #
+    #     self.label2 = ttk.Label(self.labelframe1, text="Unidades")
+    #     self.label2.grid(column=0, row=3, padx=4, pady=4)
+    #     self.unidades_tipo = tk.IntVar()
+    #     self.entry_unidades = ttk.Entry(self.labelframe1, textvariable=self.unidades_tipo)
+    #     self.entry_unidades.grid(column=1, row=3, padx=4, pady=4)
+    #
+    #     self.label2 = ttk.Label(self.labelframe1, text="Descuento")
+    #     self.label2.grid(column=0, row=4, padx=4, pady=4)
+    #     self.descuento_tipo = tk.IntVar()
+    #     self.entry_descuento = ttk.Entry(self.labelframe1, textvariable=self.descuento_tipo)
+    #     self.entry_descuento.grid(column=1, row=4, padx=4, pady=4)
+    #
+    #     self.botonRegistro = ttk.Button(self.labelframe1, text="Añadir Registro a Detalle", command=self.agregar_detalle)
+    #     self.botonRegistro.grid(column=1, row=5, padx=4, pady=4)
+    #     self.botonBorrarDetalle = ttk.Button(self.labelframe1, text="Borrar Detalle por ID")
+    #     self.botonBorrarDetalle.grid(column=1, row=6, padx=4, pady=4)
 
     # Formulario tabla productos
     def tabla_productos(self):
@@ -295,16 +295,16 @@ class FormularioTablas:
         self.fechaP_tipo.set("")
         self.fechaE_tipo.set("")
 
-    def agregar_detalle(self):
-        datos = (self.iddetalle.get(), self.idproducto_tipo.get(), self.precioD_tipo.get(), self.unidades_tipo,
-                 self.descuento_tipo)
-        self.Controller.add_detalle(datos)
-        mb.showinfo("Información", "Detalle Añadido")
-        self.iddetalle.set(0)
-        self.idproducto_tipo.set(0)
-        self.precioD_tipo.set(0)
-        self.unidades_tipo.set(0)
-        self.descuento_tipo.set(0)
+    # def agregar_detalle(self):
+    #     datos = (self.iddetalle.get(), self.idproducto_tipo.get(), self.precioD_tipo.get(), self.unidades_tipo,
+    #              self.descuento_tipo)
+    #     self.Controller.add_detalle(datos)
+    #     mb.showinfo("Información", "Detalle Añadido")
+    #     self.iddetalle.set(0)
+    #     self.idproducto_tipo.set(0)
+    #     self.precioD_tipo.set(0)
+    #     self.unidades_tipo.set(0)
+    #     self.descuento_tipo.set(0)
 
     def agregar_producto(self):
         datos = (
