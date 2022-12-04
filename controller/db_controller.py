@@ -90,18 +90,21 @@ class Db_controller:
         clientes = []
         cargos = []
         rs = self.database.get_client_cargos()
+        rs2 = self.database.count_clientes_byCargo()
         for c in rs:
-            clientes.append(c[0])
-            p = self.database.get_count_of_pedidos_by_client(c)
-            cargos.append(p)
+            if c[0] not in cargos:
+                cargos.append(c[0])
+        cargos.sort()
+        for x in rs2:
+            clientes.append(x[1])
 
         if tipo == "Plot":
-            pp.plot(clientes, cargos, color="red")
+            pp.plot(cargos, clientes, color="red")
         elif tipo == "Scatter":
-            pp.scatter(clientes, cargos, color="green")
+            pp.scatter(cargos, clientes, color="green")
         elif tipo == "Fill-between":
-            pp.fill_between(clientes, cargos, color="blue")
+            pp.fill_between(cargos, clientes, color="blue")
 
-        pp.xlabel("ID Clientes")
-        pp.ylabel("Cargo")
+        pp.xlabel("Cargo")
+        pp.ylabel("ID Cliente")
         pp.savefig("../graph/client-graph2.png")

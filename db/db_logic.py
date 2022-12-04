@@ -205,3 +205,11 @@ class Db_Logic:
         sql = "select cargo from cliente "
         rs = cursor.execute(sql)
         return rs.fetchall()
+
+    def count_clientes_byCargo(self):
+        con = self.abrir()
+        cursor = con.cursor()
+        sql = "SELECT cargo, count(cargo) from cliente group by cargo"
+        rs = cursor.execute(sql)
+        return rs.fetchall()
+
