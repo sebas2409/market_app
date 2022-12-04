@@ -1,6 +1,6 @@
-from db.db_logic import Db_Logic as db
 from matplotlib import pyplot as pp
-from numpy import var
+
+from db.db_logic import Db_Logic as db
 
 
 class Db_controller:
@@ -60,7 +60,7 @@ class Db_controller:
     def order_product_by_id(self):
         self.database.order_product_by_id()
 
-    def obtener_grafica_cliente(self):
+    def obtener_grafica_cliente(self, tipo):
         clientes = []
         pedidos = []
         rs = self.database.get_client_id()
@@ -68,7 +68,40 @@ class Db_controller:
             clientes.append(c[0])
             p = self.database.get_count_of_pedidos_by_client(c)
             pedidos.append(p)
-        pp.plot(clientes, pedidos, color="red")
-        pp.xlabel("id clientes")
-        pp.ylabel("total de pedidos")
+
+        if tipo == "Plot":
+            pp.plot(clientes, pedidos, color="red")
+        elif tipo == "Scatter":
+            pp.scatter(clientes, pedidos, color="green")
+        elif tipo == "Fill-between":
+            pp.fill_between(clientes, pedidos, color="blue")
+
+        pp.xlabel("ID Clientes")
+        pp.ylabel("Total de Pedidos")
         pp.savefig("../graph/client-graph.png")
+
+    def create_new_table(self, datos):
+        self.database.create_new_table(datos)
+
+    def drop_table(self, tabla):
+        self.database.drop_table(tabla)
+
+    def grafica_clientes_cargo(self, tipo):
+        clientes = []
+        cargos = []
+        rs = self.database.get_client_cargos()
+        for c in rs:
+            clientes.append(c[0])
+            p = self.database.get_count_of_pedidos_by_client(c)
+            cargos.append(p)
+
+        if tipo == "Plot":
+            pp.plot(clientes, cargos, color="red")
+        elif tipo == "Scatter":
+            pp.scatter(clientes, cargos, color="green")
+        elif tipo == "Fill-between":
+            pp.fill_between(clientes, cargos, color="blue")
+
+        pp.xlabel("ID Clientes")
+        pp.ylabel("Cargo")
+        pp.savefig("../graph/client-graph2.png")

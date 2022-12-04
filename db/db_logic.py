@@ -155,6 +155,11 @@ class Db_Logic:
             print(row)
         con.close()
 
+    def abrir(self):
+        # conexion = sqlite3.connect("../supermercado.db")
+        conexion = sqlite3.connect("C:/Users/grand/PycharmProjects/market_app_sge/supermercado.db")
+        return conexion
+
     def select_pedido_ordenado(self):
         con = self.abrir()
         cursor = con.cursor()
@@ -180,7 +185,23 @@ class Db_Logic:
         x = rs.fetchall()
         return len(x)
 
-    def abrir(self):
-        # conexion = sqlite3.connect("../supermercado.db")
-        conexion = sqlite3.connect("C:/Users/juang/PycharmProjects/market_app/supermercado.db")
-        return conexion
+    def create_new_table(self, datos):
+        con = self.abrir()
+        cursor = con.cursor()
+        sql = "CREATE TABLE IF NOT EXISTS {} ({} varchar(20),{} varchar(20))".format(datos[0], datos[1], datos[2])
+        cursor.execute(sql)
+        con.close()
+
+    def drop_table(self, datos):
+        con = self.abrir()
+        cursor = con.cursor()
+        sql = "drop table {}".format(datos[0])
+        cursor.execute(sql)
+        con.close()
+
+    def get_client_cargos(self):
+        con = self.abrir()
+        cursor = con.cursor()
+        sql = "select cargo from cliente "
+        rs = cursor.execute(sql)
+        return rs.fetchall()
