@@ -96,9 +96,29 @@ class Cliente:
         self.boton100 = ttk.Button(self.labelframe1, text="Ordenar por id", command=self.order_by_id)
         self.boton100.grid(column=0, row=15, padx=4, pady=4)
 
-        self.boton101 = ttk.Button(self.labelframe1, text="Obtener gráfica de clientes",
+        self.combo = ttk.Combobox(
+            self.labelframe1,
+            state="readonly",
+            values=["Plot", "Scatter", "Fill-between"]
+        )
+
+        self.combo.grid(column=1, row=16, padx=4, pady=4)
+
+        self.boton101 = ttk.Button(self.labelframe1, text="Gráfica Relación clientes-pedidos",
                                    command=self.obtener_grafica_por_id)
         self.boton101.grid(column=0, row=16, pady=4, padx=5)
+
+        self.combo1 = ttk.Combobox(
+            self.labelframe1,
+            state="readonly",
+            values=["Plot", "Scatter", "Fill-between"]
+        )
+
+        self.combo1.grid(column=1, row=17, padx=4, pady=4)
+
+        self.boton101 = ttk.Button(self.labelframe1, text="Gráfica Relación clientes-cargo",
+                                   command=self.grafica_clientes_cargo)
+        self.boton101.grid(column=0, row=17, pady=4, padx=5)
 
     def agregar_cli(self):
         datos = (self.idcliente_tipo.get(), self.cia_tipo.get(), self.contacto_tipo.get(), self.cargo_tipo.get(),
@@ -148,4 +168,11 @@ class Cliente:
         self.Controller.order_by_id()
 
     def obtener_grafica_por_id(self):
-        self.Controller.obtener_grafica_cliente()
+        tipo = self.combo.get()
+        self.Controller.obtener_grafica_cliente(tipo)
+        mb.showinfo("Información", "PNG con Gráfica creado")
+
+    def grafica_clientes_cargo(self):
+        tipo = self.combo1.get()
+        self.Controller.grafica_clientes_cargo(tipo)
+        mb.showinfo("Información", "PNG con Gráfica creado")
